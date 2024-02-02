@@ -45,6 +45,8 @@ return [
 	'rak_4' => 'Rak 4',
 	'rak_5' => 'Rak 5',
 	'rak_6' => 'Rak 6',
+	'rak_7' => 'Rak 7',
+	'rak_8' => 'Rak 8',
 	'aksi' => 'Aksi',
     'home_title' => 'Dashboard - Penyimpanan Senjata Otomatis',
 ];

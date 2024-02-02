@@ -45,6 +45,8 @@ return [
 	'rak_4' => 'Rack 4',
 	'rak_5' => 'Rack 5',
 	'rak_6' => 'Rack 6',
+	'rak_7' => 'Rack 7',
+	'rak_8' => 'Rack 8',
 	'aksi' => 'Action',
     'home_title' => 'Dashboard - Automation Weapon Rack',
 ];

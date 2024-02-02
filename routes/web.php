@@ -28,12 +28,18 @@ Route::get('/home', function () {
     return view('webpage.home');
 })->name('home')->middleware('auth');
 
+// Board Status Page
+Route::get('/board', function () {
+    return view('webpage.board');
+})->name('board')->middleware('auth');
+
 // Layout Page
 Route::get('/layout', function () {
     return view('layout.layout');
 })->name('layout');
 
-Route::get('/load', [LoadController::class, 'processStatus'])->name('load');
+// Processing Database
+Route::get('/process-status', [LoadController::class, 'processStatus'])->name('process-status');
 
 // Index- Setlanguage
 Route::group(['prefix' => '{locale}'], function () {
@@ -46,6 +52,13 @@ Route::group(['prefix' => '{locale}'], function () {
 Route::group(['prefix' => '{locale}'], function () {
     Route::get('/home', function () {
         return view('webpage.home');
+    })->middleware('setLocale');
+});
+
+// Board- Setlanguage
+Route::group(['prefix' => '{locale}'], function () {
+    Route::get('/board', function () {
+        return view('webpage.board');
     })->middleware('setLocale');
 });
 

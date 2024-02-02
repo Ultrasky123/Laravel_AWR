@@ -36,10 +36,19 @@
             }, 1000); // pembacaan file status 5 detik
         });
     </script> --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setInterval(function() {
+                $.get('/process-status', function(data) {
+                    $('#cekstatus').html(data);
+                });
+            }, 1000); // refresh every second
+        });
+    </script>
 </head>
 
 <body>
-    @include('layout.header')
+    @include('layout.headerhome')
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
@@ -56,7 +65,7 @@
             <li class="nav-heading">@lang('auth.halaman')</li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="papan.php">
+                <a class="nav-link collapsed" href="{{route('board')}}">
                     <i class="bi bi-clipboard"></i>
                     <span>@lang('auth.papan_Status_Senjata')</span>
                 </a>
@@ -162,6 +171,8 @@
     <script src="{{asset('assets/vendor/tinymce/tinymce.min.js')}}"></script>
     <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
     <script src="https://kit.fontawesome.com/878a3fab63.js" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Template Main JS File -->
     <script src="{{asset('js/main.js')}}"></script>
