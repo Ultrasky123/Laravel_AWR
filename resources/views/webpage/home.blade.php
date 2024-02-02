@@ -1,11 +1,4 @@
-@if(Auth::check())
-    <!-- User is authenticated -->
-    <p>Welcome, {{ Auth::user()->name }}!</p>
-@else
-    <!-- User is not authenticated -->
-    <p>Please log in to access exclusive content.</p>
-@endif
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, sshirink-to-fit=no">
     <script type="text/javascript" src="{{asset('jquery/jquery.min.js')}}"></script>
 
-
+    <title>@lang('auth.home_title')</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -25,30 +18,28 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="{{asset('bootstrap/bootstrap-5.3.2-dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
     <link href="{{asset('assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/vendor/quill/quill.snow.css')}}" rel="stylesheet">
     <link href="{{asset('assets/vendor/quill/quill.bubble.css')}}" rel="stylesheet">
     <link href="{{asset('assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
     <link href="{{asset('assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
-
     <!-- Template Main CSS File -->
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
 
     <!-- scaning membaca status loadcell -->
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $(document).ready(function() {
             setInterval(function() {
                 $("#cekstatus").load('proses-status.php')
             }, 1000); // pembacaan file status 5 detik
         });
-    </script>
-</head> --}}
+    </script> --}}
+</head>
 
 <body>
-    @extends('layout.layout')
-    @section('content')
+    @include('layout.header')
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
@@ -56,7 +47,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link" href="home.php">
+                <a class="nav-link" href="{{ route('home') }}">
                     <i class="bi bi-grid"></i>
                     <span>@lang('auth.dashboard')</span>
                 </a>
@@ -78,7 +69,7 @@
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="data-senjata.php">
+                <a class="nav-link collapsed" href="/data-senjata.php">
                     <i class="fa-solid fa-gun"></i>
                     <span>@lang('auth.data_Senjata')</span>
                 </a>
@@ -111,7 +102,8 @@
                             <div class="card recent-sales overflow-auto">
 
                                 <div class="filter">
-                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i
+                                            class="bi bi-three-dots"></i></a>
                                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                         <li class="dropdown-header text-start">
                                             <h6>Filter</h6>
@@ -124,7 +116,9 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <h5 class="card-title">@lang('auth.status_Penggunaan_Senjata') <span>@lang('auth.qwe|_Hari_ini')</span></h5>
+                                    <h5 class="card-title">@lang('auth.status_Penggunaan_Senjata')
+                                        <span>@lang('auth.qwe|_Hari_ini')</span>
+                                    </h5>
 
                                     <table class="table table-borderless datatable">
                                         <thead>
@@ -154,8 +148,9 @@
 
     </main><!-- End #main -->
 
-    @endsection
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    @include('layout.footer')
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
     <script src="{{asset('assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
@@ -170,7 +165,6 @@
 
     <!-- Template Main JS File -->
     <script src="{{asset('js/main.js')}}"></script>
-
 </body>
 
 </html>

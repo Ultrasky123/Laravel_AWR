@@ -27,12 +27,13 @@ Route::get('/123', function () {
 Route::get('/home', function () {
     return view('webpage.home');
 })->name('home')->middleware('auth');
+
 // Layout Page
 Route::get('/layout', function () {
     return view('layout.layout');
 })->name('layout');
 
-Route::get('/load', [LoadController::class, 'processStatus']);
+Route::get('/load', [LoadController::class, 'processStatus'])->name('load');
 
 // Index- Setlanguage
 Route::group(['prefix' => '{locale}'], function () {
@@ -40,20 +41,16 @@ Route::group(['prefix' => '{locale}'], function () {
         return view('webpage.index');
     })->middleware('setLocale');
 });
+
 // Home- Setlanguage
 Route::group(['prefix' => '{locale}'], function () {
     Route::get('/home', function () {
         return view('webpage.home');
     })->middleware('setLocale');
 });
-// Log Out
-Route::post('/signout', [AuthController::class, 'SignOut'])->name('signout');
 
 // Authentication Login
 Route::post('/login', [AuthController::class, 'authenticate']);
-// Route::get('/home', [AuthController::class, 'showPage'])->name('home');
 
-// Authentication Login
-// Route::get('/login', function () {
-//     return view('auth.proses_login');
-// })->name('login');
+// Log Out
+Route::post('/signout', [AuthController::class, 'SignOut'])->name('signout');

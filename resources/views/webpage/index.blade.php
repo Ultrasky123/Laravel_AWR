@@ -70,20 +70,10 @@
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                    {{-- @if (Session::has('error'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ Session::get('error') }}
-                        </div>
-                    @endif --}}
                   <h5 class="modal-title">@lang('auth.masuk')</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    @if(session()->has('loginError'))
-                        <div class="alert alert-danger">
-                            {{ session('loginError') }}
-                        </div>
-                    @endif
                   <form action="/login" method="post" class="row g-3 needs-validation" novalidate>
                     @csrf
                     <div class="col-12">
@@ -91,22 +81,13 @@
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
                         <input type="text" name="username" class="form-control
-                        {{-- @error('username') is-invalid @enderror --}}
                         " id="yourUsername" autofocus required>
                       </div>
                     </div>
-                    {{-- @error('username')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror --}}
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">@lang('auth.kata_Sandi')</label>
                       <input type="password" name="password" class="form-control" id="yourPassword" required>
                     </div>
-                    {{-- @error('password')
-                        <small>{{$message}}</small>
-                    @enderror --}}
                     <div class="modal-footer">
                       <div class="col-12">
                         <!-- <p class="small mb-0">Akun tidak terdaftar? <a href="registrasi.php">Daftarkan sebuah akun</a></p> -->
@@ -210,10 +191,10 @@
                     <img src="{{asset('img/Storage.jpg')}}" class="d-block w-100" alt="...">
                   </div>
                   <div class="carousel-item">
-                    <img src="{{asset('img/Storage2.jpg')}}" class="d-block w-100" alt="...">
+                    <img src="{{asset('img/Storage1.jpg')}}" class="d-block w-100" alt="...">
                   </div>
                   <div class="carousel-item">
-                    <img src="{{asset('img/Storage3.jpg')}}" class="d-block w-100" alt="...">
+                    <img src="{{asset('img/Storage2.jpg')}}" class="d-block w-100" alt="...">
                   </div>
                 </div>
 
@@ -289,13 +270,6 @@
   <script src="{{asset('boostrap/js/bootstrap.js')}}"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-    {{-- @if ($message = Session::get('danger'))
-        <script>
-            Swal.fire('{{$message}}')
-        </script>
-
-    @endif --}}
 </body>
 
 </html>
