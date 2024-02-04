@@ -27,9 +27,9 @@ Route::get('/123', function () {
 });
 
 // Home Page
-Route::get('/home', function () {
-    return view('webpage.home');
-})->name('home')->middleware('auth');
+// Route::get('/home', function () {
+//     return view('webpage.home');
+// })->name('home')->middleware('auth');
 
 // Board Status Page
 Route::get('/board', function () {
@@ -52,7 +52,7 @@ Route::get('/layout', function () {
 })->name('layout');
 
 // Processing Database
-Route::get('/home', [LoadController::class, 'showDATAHome'])->name('home');
+// Route::get('/home', [LoadController::class, 'showDATAHome'])->name('home');
 Route::get('/access', [LoadController::class, 'LoadStatusAccess'])->name('access')->middleware('auth');
 Route::get('/weapon', [LoadController::class, 'showDataWeapon'])->name('weapon')->middleware('auth');
 
@@ -68,10 +68,16 @@ Route::group(['prefix' => '{locale}'], function () {
 });
 
 // Home- Setlanguage
+// Route::group(['prefix' => '{locale}'], function () {
+//     Route::get('/home', function () {
+//         return view('webpage.home');
+//     })->middleware('setLocale');
+// });
+
+
+// Home - Locale - Language - ShowData
 Route::group(['prefix' => '{locale}'], function () {
-    Route::get('/home', function () {
-        return view('webpage.home');
-    })->middleware('setLocale');
+    Route::get('/home', [LoadController::class, 'ShowDATAHome'])->name('home')->middleware(['setLocale', 'auth']);
 });
 
 // Board- Setlanguage

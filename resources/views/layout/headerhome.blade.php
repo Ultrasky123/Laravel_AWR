@@ -2,7 +2,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-start">
-      <a href="{{route('home')}}" class="logo d-flex align-items-center">
+      <a href="{{ route('home', ['locale' => app()->getLocale()]) }}" class="logo d-flex align-items-center">
         <img src="{{asset('img/stas-rg_logo-removebg-preview.png')}}" alt="">
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>

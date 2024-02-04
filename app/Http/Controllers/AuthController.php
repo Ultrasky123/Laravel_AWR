@@ -10,15 +10,13 @@ class AuthController extends Controller
 {
     //
     public function authenticate(Request $request){
-        // dd('loginPost is called');
-        // dd($request->all());
         $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
-            return redirect()->route('home');
+            return redirect()->route('home', ['locale' => app()->getLocale()]);
         } else{
             dd('Error');
         }

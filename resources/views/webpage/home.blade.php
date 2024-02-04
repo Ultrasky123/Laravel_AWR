@@ -49,7 +49,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('home') }}">
+                <a class="nav-link" href="{{ route('home', ['locale' => app()->getLocale()]) }}">
                     <i class="bi bi-grid"></i>
                     <span>@lang('auth.dashboard')</span>
                 </a>
