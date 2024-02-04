@@ -9,7 +9,7 @@ class tmploadcells extends Model
 {
     use HasFactory;
     protected $table = 'tmploadcells';
-    protected $primarykey = 'id_senjata';
+    protected $primaryKey = 'id_senjata';
     protected $fillable = [
         'status','berat'
     ];

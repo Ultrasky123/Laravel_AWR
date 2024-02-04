@@ -13,76 +13,7 @@ use Illuminate\Support\Facades\DB;
 class LoadController extends Controller
 {
     //
-    public function load()
-    {
-        // Mengambil table status dan id_senjata
-        $statusAbsen = tmploadcells::pluck('status')->toArray();
-        $idSenjata = tmploadcells::pluck('id_senjata')->toArray();
-
-        //   Berikan status 1 = masuk, 0 = keluar
-        $mode = '';
-        foreach ($statusAbsen as $nilai){
-            if($nilai == 1){
-                $mode = 'Masuk';
-            } else if ($nilai == 0){
-                $mode = 'Keluar';
-            }
-        }
-        //   Ngambil data dari table owner
-        $cari_karyawan = owners::where('id_senjata', $idSenjata)->get();
-
-    }
-
-    // public function processStatus()
-    // {
-    //     $loadCells = tmploadcells::all();
-
-    //     foreach ($loadCells as $loadCell) {
-    //         $statusAbsen = $loadCell->status;
-    //         $idSenjata = $loadCell->id_senjata;
-
-    //         $mode = $statusAbsen == 1 ? "Masuk" : "Keluar";
-
-    //         $owner = owners::where('id_senjata', $idSenjata)->first();
-
-    //         if ($owner) {
-    //             $nama = $owner->nama_pengguna;
-
-    //             $tanggal = Carbon::now()->format('Y-m-d');
-    //             $jam = Carbon::now()->format('H:i:s');
-
-    //             $status = DB::table('status')->where('id_senjata', $idSenjata)->where('tanggal', $tanggal)->first();
-
-    //             if ($statusAbsen == 0 && !$status) {
-    //                 DB::table('status')->insert([
-    //                     'id_senjata' => $idSenjata,
-    //                     'tanggal' => $tanggal,
-    //                     'keluar' => $jam
-    //                 ]);
-    //             } else if ($statusAbsen == 1 && $status) {
-    //                 DB::table('status')
-    //                     ->where('id_senjata', $idSenjata)
-    //                     ->where('tanggal', $tanggal)
-    //                     ->whereNull('durasi')
-    //                     ->update([
-    //                         'masuk' => $jam,
-    //                         'durasi' => DB::raw("TIMEDIFF('$jam', keluar)")
-    //                     ]);
-    //             }
-    //         }
-    //     }
-
-    //     $tanggal = Carbon::now()->format('Y-m-d');
-    //     $statuses = DB::table('status')
-    //         ->join('owners', 'status.id_senjata', '=', 'owners.id_senjata')
-    //         ->where('status.tanggal', $tanggal)
-    //         ->select('status.*', 'owners.id_pengguna', 'owners.nama_pengguna')
-    //         ->get();
-
-    //     // Pass the $statuses variable to your view to display the data
-    //     return view('webpage.home', ['statuses' => $statuses]);
-    // }
-    public function processStatus()
+    public function LoadStatusHome()
     {
         $loadCells = tmploadcells::all();
 
@@ -143,5 +74,28 @@ class LoadController extends Controller
             $output .= "</tr>";
         }
         return $output;
+    }
+
+    public function showDATAHome()
+    {
+        $date = Carbon::now()->format('Y-m-d');
+
+        $status = Status::join('owners', 'status.id_senjata', '=', 'owners.id_senjata')
+            ->where('status.tanggal', $date)
+            ->select('status.*', 'owners.id_pengguna', 'owners.nama_pengguna')
+            ->get();
+
+        return view('webpage.home', ['status' => $status]);
+    }
+
+    public function LoadStatusAccess(){
+        $data = DB::table('owners')->get();
+        return view('webpage.access', ['data' => $data]);
+    }
+
+    public function showDataWeapon()
+    {
+        $data = DB::table('tmploadcells')->get();
+        return view('webpage.weapon', ['data' => $data]);
     }
 }

@@ -1,44 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, sshirink-to-fit=no">
-    <script type="text/javascript" src="{{asset('jquery/jquery.min.js')}}"></script>
-
-    <title>@lang('auth.home_title')</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
-    <!-- Favicons -->
-    <link href="{{asset('img\Logo G - STAS RG.png')}}" rel="icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    {{-- <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/vendor/quill/quill.snow.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/vendor/quill/quill.bubble.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/vendor/simple-datatables/style.css')}}" rel="stylesheet"> --}}
-
-    <!-- Template Main CSS File -->
-    <link href="{{asset('css/style.css')}}" rel="stylesheet">
-
-    <!-- scaning membaca status loadcell -->
-    {{-- <script type="text/javascript">
-        $(document).ready(function() {
-            setInterval(function() {
-                $("#cekstatus").load('proses-status.php')
-            }, 1000); // pembacaan file status 5 detik
-        });
-    </script> --}}
-</head>
-
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -74,13 +33,13 @@
 
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
-              <a class="dropdown-item" href="{{url('id/home')}}">
+              <a class="dropdown-item" href="{{url('id/access')}}">
                 <img src="{{asset('img/bendera-id.png')}}" alt="" class="rounded-circle" width="20px">
                 ID
               </a>
             </li>
             <li>
-              <a class="dropdown-item" href="{{url('en/home')}}">
+              <a class="dropdown-item" href="{{url('en/access')}}">
                 <img src="{{asset('img/bendera-amerika.png')}}" alt="" class="rounded-circle" width="20px">
                 EN
               </a>
@@ -136,13 +95,4 @@
 
   </header><!-- End Header -->
 
-  {{-- Section content for body code --}}
-  @yield('content')
-  {{-- End of Section --}}
-
-  {{-- Footer --}}
-<footer id="footer" class="footer">
-    <div class="copyright">
-        &copy; Copyright <strong><span>2024</span></strong>
-    </div>
-</footer><!-- End Footer -->
+@yield('header')

@@ -32,19 +32,12 @@
     {{-- <script type="text/javascript">
         $(document).ready(function() {
             setInterval(function() {
-                $("#cekstatus").load('proses-status.php')
-            }, 1000); // pembacaan file status 5 detik
-        });
-    </script> --}}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            setInterval(function() {
                 $.get('/process-status', function(data) {
                     $('#cekstatus').html(data);
                 });
             }, 1000); // refresh every second
         });
-    </script>
+    </script> --}}
 </head>
 
 <body>
@@ -71,14 +64,14 @@
                 </a>
             </li><!-- End Profile Page Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="data-akses.php">
+                <a class="nav-link collapsed" href="{{route('access')}}">
                     <i class="fa-solid fa-person-rifle"></i>
                     <span>@lang('auth.data_Pengguna')</span>
                 </a>
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/data-senjata.php">
+                <a class="nav-link collapsed" href="{{route('weapon')}}">
                     <i class="fa-solid fa-gun"></i>
                     <span>@lang('auth.data_Senjata')</span>
                 </a>
@@ -142,6 +135,17 @@
                                             </tr>
                                         </thead>
                                         <tbody id="cekstatus">
+                                            @foreach ($status as $index => $status)
+                                            <tr>
+                                                <td>{{ $index + 1 }}</td>
+                                                <td>{{ $status->id_senjata }}</td>
+                                                <td>{{ $status->id_pengguna }}</td>
+                                                <td>{{ $status->nama_pengguna }}</td>
+                                                <td>{{ $status->tanggal }}</td>
+                                                <td>{{ $status->keluar }}</td>
+                                                <td>{{ $status->masuk }}</td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -175,7 +179,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{asset('js/main.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
 </body>
 
 </html>

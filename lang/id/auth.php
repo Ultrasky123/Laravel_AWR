@@ -49,5 +49,11 @@ return [
 	'rak_8' => 'Rak 8',
 	'aksi' => 'Aksi',
     'home_title' => 'Dashboard - Penyimpanan Senjata Otomatis',
+    'tambah_akses' => 'Tambah Akses - Penyimpanan Senjata Otomatis',
+    'data_akses' => 'Data Akses',
+    'tambah_data_akses' => ' Tambah Data Akses',
+    'ubah_data_akses' => ' Ubah Data Akses',
+    'no_kartu' => 'No Kartu',
+    'tambah_pengguna' => 'Tambah Data Pengguna - Penyimpanan Senjata Otomatis'
 ];
 

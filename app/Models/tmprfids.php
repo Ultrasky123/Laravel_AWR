@@ -9,5 +9,5 @@ class tmprfids extends Model
 {
     use HasFactory;
     protected $table = 'tmprfids';
-    protected $primarykey = 'nokartu';
+    protected $primaryKey = 'nokartu';
 }
