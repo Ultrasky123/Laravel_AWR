@@ -2,7 +2,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-start">
-      <a href="{{route('home', ['locale' => app()->getLocale()])}}" class="logo d-flex align-items-center">
+      <a href="{{ route('home', ['locale' => app()->getLocale()]) }}" class="logo d-flex align-items-center">
         <img src="{{asset('img/stas-rg_logo-removebg-preview.png')}}" alt="">
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -33,13 +33,13 @@
 
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
-              <a class="dropdown-item" href="{{url('id/access')}}">
+              <a class="dropdown-item" href="{{url('id/tambah')}}">
                 <img src="{{asset('img/bendera-id.png')}}" alt="" class="rounded-circle" width="20px">
                 ID
               </a>
             </li>
             <li>
-              <a class="dropdown-item" href="{{url('en/access')}}">
+              <a class="dropdown-item" href="{{url('en/tambah')}}">
                 <img src="{{asset('img/bendera-amerika.png')}}" alt="" class="rounded-circle" width="20px">
                 EN
               </a>

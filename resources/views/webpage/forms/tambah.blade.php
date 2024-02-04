@@ -49,7 +49,7 @@
 </head>
 
 <body>
-    @include('layout.headerhome')
+    @include('layout.headertambah')
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
@@ -57,7 +57,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('home') }}">
+            <a class="nav-link" href="{{ route('home', ['locale' => app()->getLocale()])  }}">
                 <i class="bi bi-grid"></i>
                 <span>@lang('auth.dashboard')</span>
             </a>
@@ -66,20 +66,20 @@
         <li class="nav-heading">@lang('auth.halaman')</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('board')}}">
+            <a class="nav-link collapsed" href="{{route('board', ['locale' => app()->getLocale()])}}">
                 <i class="bi bi-clipboard"></i>
                 <span>@lang('auth.papan_Status_Senjata')</span>
             </a>
         </li><!-- End Profile Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('access')}}">
+            <a class="nav-link collapsed" href="{{route('access', ['locale' => app()->getLocale()])}}">
                 <i class="fa-solid fa-person-rifle"></i>
                 <span>@lang('auth.data_Pengguna')</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('weapon')}}">
+            <a class="nav-link collapsed" href="{{route('weapon', ['locale' => app()->getLocale()])}}">
                 <i class="fa-solid fa-gun"></i>
                 <span>@lang('auth.data_Senjata')</span>
             </a>
@@ -93,9 +93,9 @@
       <h1>@lang('auth.tambah_Data')</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route('home')}}">@lang('auth.dashboard')</a></li>
+          <li class="breadcrumb-item"><a href="{{route('home', ['locale' => app()->getLocale()])}}">@lang('auth.dashboard')</a></li>
           <li class="breadcrumb-item">@lang('auth.halaman')</li>
-          <li class="breadcrumb-item"><a href="{{route('access')}}">@lang('auth.data_Pengguna')</a></li>
+          <li class="breadcrumb-item"><a href="{{route('access', ['locale' => app()->getLocale()])}}">@lang('auth.data_Pengguna')</a></li>
           <li class="breadcrumb-item active">@lang('auth.tambah_Data_Pengguna')</li>
         </ol>
       </nav>
@@ -108,7 +108,8 @@
             <div class="card-body">
               <h5 class="card-title">@lang('auth.tambah_Data_Pengguna')</h5>
               <!--Data Akses -->
-              <form method="POST" class="row g-3 needs-validation">
+              {{-- <form method="POST" route="{{route('store')}}" class="row g-3 needs-validation"> --}}
+                <form method="POST" action="{{route('store', ['locale' => app()->getLocale()])}}" class="row g-3 needs-validation">
                 @csrf
                 {{-- <div id="norfid"></div> --}}
                 @php
@@ -121,7 +122,7 @@
                 </div>
                 <!-- <div id="idsenjata"></div> -->
                 <div class="col-12">
-                  <label class="col-sm-2 col-form-label">@lang('auth.id_Senjata')</label>
+                  <label class="col-sm-2 col-form-label">@lang('auth.iD_Senjata')</label>
                   <div class="col">
                     <select class="form-select" aria-label="Default select example" name="id_senjata" id="id_senjata">
                       <option value="">@lang('auth.buka_pilihan_ini')</option>
@@ -143,7 +144,7 @@
                   </div>
                 </div>
                 <div class="col-12">
-                  <label for="inputEmail4" class="form-label">@lang('auth.id_Pengguna')</label>
+                  <label for="inputEmail4" class="form-label">@lang('auth.iD_Pengguna')</label>
                   <input type="text" class="form-control" name="id_pengguna" id="id_pengguna" required>
                 </div>
                 <div class="col-12">
@@ -155,7 +156,7 @@
                   <input type="text" class="form-control" name="pangkat" id="pangkat" required>
                 </div>
                 <div class="col-12">
-                  <label for="inputAddress" class="form-label">@lang('auth.NRP')</label>
+                  <label for="inputAddress" class="form-label">@lang('auth.nRP')</label>
                   <input type="text" class="form-control" name="NRP" id="NRP" required>
                 </div>
                 <div class="col-12">
@@ -167,7 +168,7 @@
                   <input type="text" class="form-control" name="kesatuan" id="kesatuan" required>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary" name="btnSubmit" id="btnSubmit"><?= __('Simpan') ?></button>
+                  <button type="submit" class="btn btn-primary" name="btnSubmit" id="btnSubmit">@lang('auth.simpan')</button>
                   <button type="reset" class="btn btn-secondary">Reset</button>
                 </div>
               </form><!-- Vertical Form -->

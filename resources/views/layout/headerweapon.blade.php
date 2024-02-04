@@ -33,13 +33,13 @@
 
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
-              <a class="dropdown-item" href="{{url('id/access')}}">
+              <a class="dropdown-item" href="{{url('id/weapon')}}">
                 <img src="{{asset('img/bendera-id.png')}}" alt="" class="rounded-circle" width="20px">
                 ID
               </a>
             </li>
             <li>
-              <a class="dropdown-item" href="{{url('en/access')}}">
+              <a class="dropdown-item" href="{{url('en/weapon')}}">
                 <img src="{{asset('img/bendera-amerika.png')}}" alt="" class="rounded-circle" width="20px">
                 EN
               </a>

@@ -58,20 +58,20 @@
             <li class="nav-heading">@lang('auth.halaman')</li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('board')}}">
+                <a class="nav-link collapsed" href="{{route('board', ['locale' => app()->getLocale()])}}">
                     <i class="bi bi-clipboard"></i>
                     <span>@lang('auth.papan_Status_Senjata')</span>
                 </a>
             </li><!-- End Profile Page Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('access')}}">
+                <a class="nav-link collapsed" href="{{route('access', ['locale' => app()->getLocale()])}}">
                     <i class="fa-solid fa-person-rifle"></i>
                     <span>@lang('auth.data_Pengguna')</span>
                 </a>
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('weapon')}}">
+                <a class="nav-link collapsed" href="{{route('weapon', ['locale' => app()->getLocale()])}}">
                     <i class="fa-solid fa-gun"></i>
                     <span>@lang('auth.data_Senjata')</span>
                 </a>

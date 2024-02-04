@@ -39,7 +39,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('home') }}">
+                <a class="nav-link" href="{{route('home', ['locale' => app()->getLocale()])}}">
                     <i class="bi bi-grid"></i>
                     <span>@lang('auth.dashboard')</span>
                 </a>
@@ -48,14 +48,14 @@
             <li class="nav-heading">@lang('auth.halaman')</li>
 
             <li class="nav-item">
-                <a class="nav-link " href="{{route('access')}}">
+                <a class="nav-link " href="{{route('access', ['locale' => app()->getLocale()])}}>
                     <i class="bi bi-person"></i>
                     <span>@lang('auth.data_akses')</span>
                 </a>
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{route('weapon')}}">
+                <a class="nav-link collapsed" href="{{route('weapon', ['locale' => app()->getLocale()])}}">
                     <i class="fa-solid fa-gun"></i>
                     <span>@lang('auth.data_Senjata')</span>
                 </a>
@@ -69,9 +69,9 @@
             <h1>@lang('auth.ubah_data_akses')</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="bi bi-house-door"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{route('home', ['locale' => app()->getLocale()])}}"><i class="bi bi-house-door"></i></a></li>
                     <li class="breadcrumb-item">@lang('auth.halaman')</li>
-                    <li class="breadcrumb-item"><a href="{{route('access')}}">@lang('auth.data_akses')</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('access', ['locale' => app()->getLocale()])}}">@lang('auth.data_akses')</a></li>
                     <li class="breadcrumb-item active">@lang('auth.ubah_data_akses')</li>
                 </ol>
             </nav>

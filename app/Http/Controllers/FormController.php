@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\owners;
 use App\Models\tmprfids;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class FormController extends Controller
 {
@@ -25,7 +26,7 @@ class FormController extends Controller
         $owner = owners::where('id_senjata', $id_senjata)->first();
         $owner->update($request->only('nokartu', 'nama_pengguna', 'pangkat', 'NRP', 'jabatan', 'kesatuan', 'id_senjata'));
 
-        return redirect()->route('access')->with('success', 'Data Berhasil Diubah');
+        return redirect()->route('access', ['locale' => app()->getLocale()])->with('success', 'Data Berhasil Diubah');
     }
 
     public function Delete($id_senjata) {
@@ -34,16 +35,45 @@ class FormController extends Controller
 
         // if successfully deleted, display deleted message and return to data access
         if($hapus) {
-            return redirect('access')->with('status', 'Terhapus');
+            return redirect()->route('access', ['locale' => app() -> getLocale()])->with('status', 'Terhapus');
         } else {
-            return redirect('access')->with('status', 'Gagal Terhapus');
+            return redirect()->route('access', ['locale' => app() -> getLocale()])->with('status', 'Gagal Terhapus');
         }
     }
 
-    public function showForm()
+    // public function store(Request $request)
+    // {
+    //     $user = new owners;
+
+    //     $user->nokartu = $request->nokartu;
+    //     $user->id_senjata = $request->id_senjata;
+    //     $user->id_pengguna = $request->id_pengguna;
+    //     $user->nama_pengguna = $request->nama_pengguna;
+    //     $user->pangkat = $request->pangkat;
+    //     $user->NRP = $request->NRP;
+    //     $user->jabatan = $request->jabatan;
+    //     $user->kesatuan = $request->kesatuan;
+
+    //     $user->save();
+
+    //     return Redirect::route('access', ['locale' => app()->getLocale()]);
+    // }
+
+    public function store(Request $request, $locale)
     {
-        dd('masuk kesini');
-        $tmprfid = tmprfids::first();
-        return view('webpage.forms.tambah', ['nokartu' => $tmprfid->nokartu]);
+        app()->setLocale($locale);
+
+        $owner = new owners;
+        $owner->nokartu = $request->nokartu;
+        $owner->id_senjata = $request->id_senjata;
+        $owner->id_pengguna = $request->id_pengguna;
+        $owner->nama_pengguna = $request->nama_pengguna;
+        $owner->pangkat = $request->pangkat;
+        $owner->NRP = $request->NRP;
+        $owner->jabatan = $request->jabatan;
+        $owner->kesatuan = $request->kesatuan;
+        $owner->save();
+
+        return redirect()->route('access', ['locale' => $locale]);
     }
 }

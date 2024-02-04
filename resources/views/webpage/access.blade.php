@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, sshirink-to-fit=no">
     <script type="text/javascript" src="{{asset('jquery/jquery.min.js')}}"></script>
 
-    <title>@lang('auth.tambah_akses')</title>
+    <title>@lang('auth.home_title')</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -33,42 +33,42 @@
 <body>
     @include('layout.headeraccess')
 
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+        <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('home') }}">
-            <i class="bi bi-grid"></i>
-            <span>@lang('auth.dashboard')</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('home', ['locale' => app()->getLocale()]) }}">
+                    <i class="bi bi-grid"></i>
+                    <span>@lang('auth.dashboard')</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
 
-      <li class="nav-heading">@lang('auth.halaman')</li>
+            <li class="nav-heading">@lang('auth.halaman')</li>
 
-      <li class="nav-item">
-          <a class="nav-link collapsed" href="{{route('board')}}">
-              <i class="bi bi-clipboard"></i>
-              <span>@lang('auth.papan_Status_Senjata')</span>
-          </a>
-      </li><!-- End Profile Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link" href="{{route('access')}}">
-            <i class="fa-solid fa-person-rifle"></i>
-            <span>@lang('auth.data_Pengguna')</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('board', ['locale' => app()->getLocale()])}}">
+                    <i class="bi bi-clipboard"></i>
+                    <span>@lang('auth.papan_Status_Senjata')</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('access', ['locale' => app()->getLocale()])}}">
+                    <i class="fa-solid fa-person-rifle"></i>
+                    <span>@lang('auth.data_Pengguna')</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('weapon')}}">
-            <i class="fa-solid fa-gun"></i>
-            <span>@lang('auth.data_Senjata')</span>
-        </a>
-      </li><!-- End F.A.Q Page Nav -->
-    </ul>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('weapon', ['locale' => app()->getLocale()])}}">
+                    <i class="fa-solid fa-gun"></i>
+                    <span>@lang('auth.data_Senjata')</span>
+                </a>
+            </li><!-- End F.A.Q Page Nav -->
+        </ul>
 
-  </aside><!-- End Sidebar-->
+    </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
@@ -76,7 +76,7 @@
       <h1>@lang('auth.data_Pengguna')</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="bi bi-house-door"></i></a></li>
+          <li class="breadcrumb-item"><a href="{{route('home', ['locale' => app()->getLocale()])}}"><i class="bi bi-house-door"></i></a></li>
           <li class="breadcrumb-item">@lang('auth.halaman')</li>
           <li class="breadcrumb-item active">@lang('auth.data_Pengguna')</li>
         </ol>
@@ -144,8 +144,10 @@
                     @endforeach
                     </tbody>
                   </table>
-                  <a href="{{view('webpage.forms.tambah')}}">
-                    <button class="btn btn-primary">@lang('auth.tambah_Data_pengguna')</button>
+                  <a href="{{route('tambah', ['locale' => app()->getLocale()])}}">
+                    <button class="btn btn-primary">
+                        @lang('auth.tambah_Data_Pengguna')
+                    </button>
                   </a>
                 </div>
 
@@ -177,7 +179,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{asset('js/main.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
 </body>
 
 </html>
