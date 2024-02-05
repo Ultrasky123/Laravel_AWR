@@ -27,17 +27,6 @@
     <link href="{{asset('assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
-
-    <!-- scaning membaca status loadcell -->
-    {{-- <script type="text/javascript">
-        $(document).ready(function() {
-            setInterval(function() {
-                $.get('/process-status', function(data) {
-                    $('#cekstatus').html(data);
-                });
-            }, 1000); // refresh every second
-        });
-    </script> --}}
 </head>
 
 <body>
@@ -134,18 +123,7 @@
                                                 <th scope="col">@lang('auth.waktu_Masuk')</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="cekstatus">
-                                            @foreach ($status as $index => $status)
-                                            <tr>
-                                                <td>{{ $index + 1 }}</td>
-                                                <td>{{ $status->id_senjata }}</td>
-                                                <td>{{ $status->id_pengguna }}</td>
-                                                <td>{{ $status->nama_pengguna }}</td>
-                                                <td>{{ $status->tanggal }}</td>
-                                                <td>{{ $status->keluar }}</td>
-                                                <td>{{ $status->masuk }}</td>
-                                            </tr>
-                                        @endforeach
+                                        <tbody id="dataTable">
                                         </tbody>
                                     </table>
                                 </div>
@@ -180,6 +158,45 @@
 
     <!-- Template Main JS File -->
     <script src="{{asset('assets/js/main.js')}}"></script>
+    <script>
+        $.ajax({
+            url: "http://localhost:8000/api/home-status/show",
+            method: "GET",
+            success: function(data) {
+                // Assuming the response is an object with keys 'code', 'message', and 'data'
+                var code = data.code;
+                var message = data.message;
+                var datas = data.data;
+
+                // Now you can use the variables code, message, and datas in your code
+                console.log(code, message, datas);
+
+                // Assuming you have a table with id 'dataTable' in your HTML
+                var dataTable = $('#dataTable');
+
+                // Clear the table
+                dataTable.empty();
+
+                // Loop through the datas and append to the table
+                $.each(datas, function(index, item) {
+                    // console.log(item);
+                    dataTable.append('<tr>' +
+                        '<td>' + (index + 1) + '</td>' +
+                        '<td>' + item.id_senjata + '</td>' +
+                        '<td>' + item.id_pengguna + '</td>' +
+                        '<td>' + item.nama_pengguna + '</td>' +
+                        '<td>' + item.tanggal + '</td>' +
+                        '<td>' + item.keluar + '</td>' +
+                        '<td>' + item.masuk + '</td>' +
+                    '</tr>');
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                // Handle error response
+                console.log("Error: ", textStatus, errorThrown);
+            }
+        });
+    </script>
 </body>
 
 </html>

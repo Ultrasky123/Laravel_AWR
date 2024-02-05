@@ -112,38 +112,22 @@
 
                   <table class="table table-borderless datatable">
                     <thead>
-                      <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">@lang('auth.iD_Senjata')</th>
-                        <th scope="col">@lang('auth.iD_Pengguna')</th>
-                        <th scope="col">@lang('auth.nama_Pengguna')</th>
-                        <th scope="col">@lang('auth.pangkat')</th>
-                        <th scope="col">@lang('auth.nRP')</th>
-                        <th scope="col">@lang('auth.jabatan')</th>
-                        <th scope="col">@lang('auth.kesatuan')</th>
-                        <th scope="col">@lang('auth.aksi')</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        @foreach ($data as $row)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $row->id_senjata }}</td>
-                            <td>{{ $row->id_pengguna }}</td>
-                            <td>{{ $row->nama_pengguna }}</td>
-                            <td>{{ $row->pangkat }}</td>
-                            <td>{{ $row->NRP }}</td>
-                            <td>{{ $row->jabatan }}</td>
-                            <td>{{ $row->kesatuan }}</td>
-                            <td>
-                                <a href="{{ route('edit', ['id_senjata' => $row->id_senjata]) }}">Edit</a> |
-                                <a href="{{ route('delete', ['id_senjata' => $row->id_senjata]) }}">@lang('auth.hapus')</a>
-                            </td>
+                            <th scope="col">No</th>
+                            <th scope="col">@lang('auth.iD_Senjata')</th>
+                            <th scope="col">@lang('auth.iD_Pengguna')</th>
+                            <th scope="col">@lang('auth.nama_Pengguna')</th>
+                            <th scope="col">@lang('auth.pangkat')</th>
+                            <th scope="col">@lang('auth.nRP')</th>
+                            <th scope="col">@lang('auth.jabatan')</th>
+                            <th scope="col">@lang('auth.kesatuan')</th>
+                            <th scope="col">@lang('auth.aksi')</th>
                         </tr>
-                    @endforeach
+                    </thead>
+                    <tbody id="dataTable">
+                        <!-- The tbody will be populated by the JavaScript code -->
                     </tbody>
-                  </table>
+                </table>
                   <a href="{{route('tambah', ['locale' => app()->getLocale()])}}">
                     <button class="btn btn-primary">
                         @lang('auth.tambah_Data_Pengguna')
@@ -180,6 +164,49 @@
 
     <!-- Template Main JS File -->
     <script src="{{asset('assets/js/main.js')}}"></script>
+    <script>
+        $.ajax({
+            url: "http://localhost:8000/api/access-status",
+            method: "GET",
+            success: function(data) {
+                // Assuming the response is an object with keys 'code', 'message', and 'data'
+                var code = data.code;
+                var message = data.message;
+                var datas = data.data;
+
+                // Now you can use the variables code, message, and datas in your code
+                console.log(code, message, datas);
+
+                // Assuming you have a table with id 'dataTable' in your HTML
+                var dataTable = $('#dataTable');
+
+                // Clear the table
+                dataTable.empty();
+
+                // Loop through the datas and append to the table
+                $.each(datas, function(index, item) {
+                    dataTable.append('<tr>' +
+                        '<td>' + (index + 1) + '</td>' +
+                        '<td>' + item.id_senjata + '</td>' +
+                        '<td>' + item.id_pengguna + '</td>' +
+                        '<td>' + item.nama_pengguna + '</td>' +
+                        '<td>' + item.pangkat + '</td>' +
+                        '<td>' + item.NRP + '</td>' +
+                        '<td>' + item.jabatan + '</td>' +
+                        '<td>' + item.kesatuan + '</td>' +
+                        '<td>' +
+                            '<a href="/edit/' + item.id_senjata + '">Edit</a> | ' +
+                            '<a href="/delete/' + item.id_senjata + '">Delete</a>' +
+                        '</td>' +
+                    '</tr>');
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                // Handle error response
+                console.log("Error: ", textStatus, errorThrown);
+            }
+        });
+    </script>
 </body>
 
 </html>

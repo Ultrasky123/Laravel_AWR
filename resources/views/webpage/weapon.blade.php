@@ -51,7 +51,9 @@
 
 <body>
     @include('layout.headerweapon')
-
+    {{-- @if (isset($error))
+        <p>Error: {{ $error }}</p>
+    @endif --}}
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
@@ -138,15 +140,7 @@
                         <th scope="col">@lang('auth.berat')</th>
                       </tr>
                     </thead>
-                    <tbody id="ceknilai">
-                        @foreach($data as $index => $row)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $row->id_senjata }}</td>
-                            <td>{{ $row->status }}</td>
-                            <td>{{ $row->berat }}</td>
-                        </tr>
-                    @endforeach
+                    <tbody id="dataTable">
                     </tbody>
                   </table>
                 </div>
@@ -181,6 +175,41 @@
 
   <!-- Template Main JS File -->
   <script src="{{asset('assets/js/main.js')}}"></script>
+  <script>
+    $.ajax({
+        url: "http://localhost:8000/api/weapon-status",
+        method: "GET",
+        success: function(data) {
+            // Assuming the response is an object with keys 'code', 'message', and 'data'
+            var code = data.code;
+            var message = data.message;
+            var datas = data.data;
+
+            // Now you can use the variables code, message, and datas in your code
+            console.log(code, message, datas);
+
+            // Assuming you have a table with id 'dataTable' in your HTML
+            var dataTable = $('#dataTable');
+
+            // Clear the table
+            dataTable.empty();
+
+            // Loop through the datas and append to the table
+            $.each(datas, function(index, item) {
+                dataTable.append('<tr>' +
+                    '<td>' + (index + 1) + '</td>' +
+                    '<td>' + item.id_senjata + '</td>' +
+                    '<td>' + item.status + '</td>' +
+                    '<td>' + item.berat + '</td>' +
+                '</tr>');
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            // Handle error response
+            console.log("Error: ", textStatus, errorThrown);
+        }
+    });
+</script>
 </body>
 
 </html>

@@ -9,10 +9,24 @@ use App\Models\tmploadcells;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class LoadController extends Controller
 {
     //
+    // Home Page
+
+    public function showDATAHome()
+    {
+        $date = Carbon::now()->format('Y-m-d');
+
+        $status = Status::join('owners', 'status.id_senjata', '=', 'owners.id_senjata')
+            ->where('status.tanggal', $date)
+            ->select('status.*', 'owners.id_pengguna', 'owners.nama_pengguna')
+            ->get();
+
+        return view('webpage.home', ['status' => $status]);
+    }
     public function LoadStatusHome()
     {
         $loadCells = tmploadcells::all();
@@ -76,26 +90,20 @@ class LoadController extends Controller
         return $output;
     }
 
-    public function showDATAHome()
-    {
-        $date = Carbon::now()->format('Y-m-d');
+    // End of Home Page
 
-        $status = Status::join('owners', 'status.id_senjata', '=', 'owners.id_senjata')
-            ->where('status.tanggal', $date)
-            ->select('status.*', 'owners.id_pengguna', 'owners.nama_pengguna')
-            ->get();
-
-        return view('webpage.home', ['status' => $status]);
-    }
-
+    // Access Page
     public function LoadStatusAccess(){
-        $data = DB::table('owners')->get();
-        return view('webpage.access', ['data' => $data]);
+        return view('webpage.access');
     }
 
+    // End of Access Page
+
+    // Weapon Page
     public function showDataWeapon()
     {
-        $data = DB::table('tmploadcells')->get();
-        return view('webpage.weapon', ['data' => $data]);
+        return view('webpage.weapon');
     }
+
+    // End of Weapon Page
 }

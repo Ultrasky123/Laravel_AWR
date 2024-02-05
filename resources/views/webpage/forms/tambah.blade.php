@@ -108,7 +108,6 @@
             <div class="card-body">
               <h5 class="card-title">@lang('auth.tambah_Data_Pengguna')</h5>
               <!--Data Akses -->
-              {{-- <form method="POST" route="{{route('store')}}" class="row g-3 needs-validation"> --}}
                 <form method="POST" action="{{route('store', ['locale' => app()->getLocale()])}}" class="row g-3 needs-validation">
                 @csrf
                 {{-- <div id="norfid"></div> --}}

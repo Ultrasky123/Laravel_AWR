@@ -39,7 +39,7 @@ Route::group(['prefix' => '{locale}'], function () {
 });
 
 // Processing Database
-Route::get('/add-status', [FormController::class, 'index'])->name('add-status');
+Route::get('/add-status', [FormController::class, 'showAccessPage'])->name('add-status');
 
 // Index- Setlanguage
 Route::group(['prefix' => '{locale}'], function () {
